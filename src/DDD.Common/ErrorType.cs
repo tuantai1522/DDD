@@ -1,4 +1,4 @@
-namespace DDD.Domain.Common;
+namespace DDD.Domain;
 
 public enum ErrorType
 {

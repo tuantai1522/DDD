@@ -5,7 +5,9 @@ VisualStudioVersion = 17.11.35303.130
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A1783966-4AFC-4159-952B-48C12E43E396}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDD.Domain", "src\DDD.Domain\DDD.Domain.csproj", "{65B510F3-97F1-4EC1-AFF6-6977510C6C24}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDD.Common", "src\DDD.Common\DDD.Common.csproj", "{65B510F3-97F1-4EC1-AFF6-6977510C6C24}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDD.Kitchen.Domain", "DDD.Kitchen.Domain\DDD.Kitchen.Domain.csproj", "{9ED8D8DC-1B6D-41FC-87D7-9D2E1C12FC1A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,11 +19,16 @@ Global
 		{65B510F3-97F1-4EC1-AFF6-6977510C6C24}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65B510F3-97F1-4EC1-AFF6-6977510C6C24}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65B510F3-97F1-4EC1-AFF6-6977510C6C24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9ED8D8DC-1B6D-41FC-87D7-9D2E1C12FC1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9ED8D8DC-1B6D-41FC-87D7-9D2E1C12FC1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9ED8D8DC-1B6D-41FC-87D7-9D2E1C12FC1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9ED8D8DC-1B6D-41FC-87D7-9D2E1C12FC1A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{65B510F3-97F1-4EC1-AFF6-6977510C6C24} = {A1783966-4AFC-4159-952B-48C12E43E396}
+		{9ED8D8DC-1B6D-41FC-87D7-9D2E1C12FC1A} = {A1783966-4AFC-4159-952B-48C12E43E396}
 	EndGlobalSection
 EndGlobal

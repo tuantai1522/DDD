@@ -1,4 +1,4 @@
-namespace DDD.Domain.Common;
+namespace DDD.Domain;
 
 public record Error
 {

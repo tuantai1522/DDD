@@ -2,10 +2,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DDD.Domain;
 
-public class Entity
+public class Entity : IBaseEntity<Guid>
+
 {
     /// <summary>
-    /// Initialize a new instance of the Entity class
+    /// Initialize a new instance of the Aggregate class
     /// </summary>
     protected Entity() => Id = Guid.NewGuid();
 
@@ -43,11 +44,17 @@ public class Entity
     /// </summary>
     public bool Active { get; private set; } = true;
     
+    private readonly List<IDomainEvent> _domainEvents = [];
+    
+    public IReadOnlyCollection<IDomainEvent> DomainEvents => _domainEvents;
+    
+    protected void RaiseDomainEvent(IDomainEvent domainEvent) => _domainEvents.Add(domainEvent);
+    
     /// <summary>
     /// Define who update this item
     /// </summary>
     /// <param name="updatedBy">
-    /// Name of person who updates this item
+    /// PersonName of person who updates this item
     /// </param>
     public void SetUpdatedBy(string updatedBy) => UpdatedBy = updatedBy;
     

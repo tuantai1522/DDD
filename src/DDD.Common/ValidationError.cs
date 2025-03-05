@@ -1,4 +1,4 @@
-namespace DDD.Domain.Common;
+namespace DDD.Domain;
 
 public sealed record ValidationError(Error[] Errors) : Error("Validation.General",
     "One or more validation errors occurred",
