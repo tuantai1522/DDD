@@ -1,16 +1,13 @@
 using DDD.Kitchen.Domain.Aggregate;
+using DDD.Kitchen.Infrastructure;
 using DDD.Kitchen.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 
-namespace DDD.Kitchen.Infrastructure;
+namespace DDD.Kitchen.WebApi.Configuration;
 
-public static class DependencyInjection
+public class InfrastructureServiceInstaller : IServiceInstaller
 {
-    public static IServiceCollection AddInfrastructure(
-        this IServiceCollection services, 
-        IConfiguration configuration)
+    public void InstallServices(IServiceCollection services, IConfiguration configuration)
     {
         services.AddDbContext<KitchenDbContext>(options =>
         {
@@ -18,7 +15,5 @@ public static class DependencyInjection
         });
         
         services.AddScoped<IRestaurantRepository, RestaurantRepository>();
-        
-        return services;
     }
 }
