@@ -7,6 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\DDD.Kitchen.Domain\DDD.Kitchen.Domain.csproj" />
       <ProjectReference Include="..\src\DDD.Common\DDD.Common.csproj" />
     </ItemGroup>
 

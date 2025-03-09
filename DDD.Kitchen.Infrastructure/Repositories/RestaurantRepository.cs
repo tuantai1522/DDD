@@ -16,6 +16,7 @@ public sealed class RestaurantRepository(KitchenDbContext context) : IRestaurant
     public async Task<IReadOnlyList<Restaurant>> GetRestaurants(CancellationToken cancellationToken = default)
     {
         return await _context.Restaurants
+            .Where(x => x.Active)
             .Include(x => x.MenuItems)
             .ToListAsync(cancellationToken);
     }
