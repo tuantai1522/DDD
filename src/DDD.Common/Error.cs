@@ -8,6 +8,12 @@ public record Error
 
     public ErrorType Type { get; }
     
+    public Error(string code, string description)
+    {
+        Code = code;
+        Description = description;
+    }
+    
     public Error(string code, string description, ErrorType type)
     {
         Code = code;

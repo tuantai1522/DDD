@@ -17,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kitchen", "Kitchen", "{6A9A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDD.Kitchen.Infrastructure", "DDD.Kitchen.Infrastructure\DDD.Kitchen.Infrastructure.csproj", "{918C4A8E-0A62-48F5-AF6E-7779872B95E5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDD.Kitchen.Application", "DDD.Kitchen.Application\DDD.Kitchen.Application.csproj", "{EA7D0543-C5E3-4016-AAE7-4FE845F955EE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{918C4A8E-0A62-48F5-AF6E-7779872B95E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{918C4A8E-0A62-48F5-AF6E-7779872B95E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{918C4A8E-0A62-48F5-AF6E-7779872B95E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA7D0543-C5E3-4016-AAE7-4FE845F955EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA7D0543-C5E3-4016-AAE7-4FE845F955EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA7D0543-C5E3-4016-AAE7-4FE845F955EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA7D0543-C5E3-4016-AAE7-4FE845F955EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,5 +52,6 @@ Global
 		{6A9A0CA2-5D34-4D83-8671-D22EE0D0F09A} = {A3CD2A24-91C2-493A-ADA2-2ECBF0DEDDA3}
 		{9ED8D8DC-1B6D-41FC-87D7-9D2E1C12FC1A} = {6A9A0CA2-5D34-4D83-8671-D22EE0D0F09A}
 		{918C4A8E-0A62-48F5-AF6E-7779872B95E5} = {6A9A0CA2-5D34-4D83-8671-D22EE0D0F09A}
+		{EA7D0543-C5E3-4016-AAE7-4FE845F955EE} = {6A9A0CA2-5D34-4D83-8671-D22EE0D0F09A}
 	EndGlobalSection
 EndGlobal
