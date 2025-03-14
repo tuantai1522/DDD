@@ -9,7 +9,7 @@ public class InfrastructureServiceInstaller : IServiceInstaller
 {
     public void InstallServices(IServiceCollection services, IConfiguration configuration)
     {
-        services.AddDbContext<KitchenDbContext>(options =>
+        services.AddDbContextPool<KitchenDbContext>(options =>
         {
             options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
         });
