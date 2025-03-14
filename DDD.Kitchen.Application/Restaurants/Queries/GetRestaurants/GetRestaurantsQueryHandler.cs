@@ -15,14 +15,17 @@ internal sealed class GetRestaurantsQueryHandler(IRestaurantRepository restauran
     : IRequestHandler<GetRestaurantsQuery, Result<IReadOnlyList<RestaurantDto>>>
 {
     private readonly IRestaurantRepository _restaurantRepository = restaurantRepository;
-    
-    public async Task<Result<IReadOnlyList<RestaurantDto>>> Handle(GetRestaurantsQuery request, CancellationToken cancellationToken)
+
+    public async Task<Result<IReadOnlyList<RestaurantDto>>> Handle(GetRestaurantsQuery request,
+        CancellationToken cancellationToken)
     {
         var restaurants = await _restaurantRepository.GetRestaurants(cancellationToken);
 
         // To map from Restaurant to RestaurantDto
         IReadOnlyList<RestaurantDto> response = restaurants
-            .Select(RestaurantDto.MapToRestaurant)
+            .Select(restaurant => new RestaurantDto(restaurant.Name, restaurant.MenuItems
+                .Select(item => new MenuItemDto(item.Name, item.Price))
+                .ToList()))
             .ToList();
 
         return Result.Success(response);

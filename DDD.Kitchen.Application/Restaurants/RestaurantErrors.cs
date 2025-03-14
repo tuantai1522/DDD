@@ -1,0 +1,16 @@
+using DDD.Domain;
+
+namespace DDD.Kitchen.Application.Restaurants;
+
+/// <summary>
+/// Contains error definitions related to Restaurant operations.
+/// </summary>
+public static class RestaurantErrors
+{
+    /// <summary>
+    /// Generates an error indicating that the restaurant ID was not found.
+    /// </summary>
+    /// <param name="id">The ID of the restaurant that was not found.</param>
+    /// <returns>An <see cref="Error"/> object with the error details.</returns>
+    public static Error IdNotFound(Guid id) => new("404", $"Restaurant Id: {id} can not found");
+}
