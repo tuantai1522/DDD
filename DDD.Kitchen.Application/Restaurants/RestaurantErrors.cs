@@ -12,5 +12,5 @@ public static class RestaurantErrors
     /// </summary>
     /// <param name="id">The ID of the restaurant that was not found.</param>
     /// <returns>An <see cref="Error"/> object with the error details.</returns>
-    public static Error IdNotFound(Guid id) => new("404", $"Restaurant Id: {id} can not found");
+    public static Error NotFound(Guid id) => Error.NotFound("404", $"Restaurant Id: {id} can not found");
 }

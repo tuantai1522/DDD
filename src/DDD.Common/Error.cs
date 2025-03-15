@@ -14,7 +14,7 @@ public record Error
         Description = description;
     }
     
-    public Error(string code, string description, ErrorType type)
+    protected Error(string code, string description, ErrorType type)
     {
         Code = code;
         Description = description;

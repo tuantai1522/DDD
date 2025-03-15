@@ -8,6 +8,8 @@ public class MenuItemConfiguration : IEntityTypeConfiguration<MenuItem>
 {
     public void Configure(EntityTypeBuilder<MenuItem> builder)
     {
+        builder.ToTable("MenuItems", "kitchens");
+
         builder.Property(p => p.Name).HasMaxLength(100).IsRequired();
         
         builder.Property(p => p.Price).IsRequired();

@@ -22,7 +22,7 @@ internal sealed class GetRestaurantByIdQueryHandler(IRestaurantRepository restau
         var restaurant = await _restaurantRepository.GetRestaurantById(request.Id, cancellationToken);
 
         return restaurant is null
-            ? Result.Failure<RestaurantDto>(RestaurantErrors.IdNotFound(request.Id))
+            ? Result.Failure<RestaurantDto>(RestaurantErrors.NotFound(request.Id))
             : Result.Success(new RestaurantDto(restaurant.Name, restaurant.MenuItems.Select(item => new MenuItemDto(item.Name, item.Price)).ToList()));
     }
 }

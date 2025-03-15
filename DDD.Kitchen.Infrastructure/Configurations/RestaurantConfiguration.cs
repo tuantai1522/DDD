@@ -8,6 +8,8 @@ public class RestaurantConfiguration : IEntityTypeConfiguration<Restaurant>
 {
     public void Configure(EntityTypeBuilder<Restaurant> builder)
     {
+        builder.ToTable("Restaurants", "kitchens");
+        
         builder.Property(p => p.Name).HasMaxLength(100).IsRequired();
         
         builder.HasIndex(p => p.Name).IsUnique();

@@ -15,5 +15,8 @@ public class InfrastructureServiceInstaller : IServiceInstaller
         });
         
         services.AddScoped<IRestaurantRepository, RestaurantRepository>();
+        
+        services.AddScoped<KitchenDbContextInitializer>();
+
     }
 }

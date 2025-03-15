@@ -1,4 +1,3 @@
-using DDD.Kitchen.Application.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DDD.Kitchen.WebApi.Middleware;
@@ -45,13 +44,6 @@ public class ExceptionHandlingMiddleware(RequestDelegate next, ILogger<Exception
     {
         return ex switch
         {
-            ValidationException validationException => new ExceptionDetails(
-                StatusCodes.Status400BadRequest,
-                "ValidationFailure",
-                "Validation Error",
-                ex.Message,
-                validationException.Errors
-            ),
             _ => new ExceptionDetails(
                 StatusCodes.Status500InternalServerError,
                 "Internal Server Error",
