@@ -11,15 +11,16 @@ public sealed class RestaurantRepository(KitchenDbContext context) : IRestaurant
     {
         return await _context.Restaurants
             .AsNoTracking()
+            .Include(x => x.MenuItems)
             .FirstOrDefaultAsync(x => x.Id == restaurantId, cancellationToken);
     }
 
     public async Task<IReadOnlyList<Restaurant>> GetRestaurants(CancellationToken cancellationToken = default)
     {
         return await _context.Restaurants
+            .AsNoTracking()
             .Where(x => x.Active)
             .Include(x => x.MenuItems)
-            .AsNoTracking()
             .ToListAsync(cancellationToken);
     }
 
@@ -28,10 +29,8 @@ public sealed class RestaurantRepository(KitchenDbContext context) : IRestaurant
         await _context.Restaurants.AddAsync(restaurant, cancellationToken);
     }
 
-    public async Task DeleteRestaurantById(Guid restaurantId, CancellationToken cancellationToken = default)
+    public void DeleteRestaurant(Restaurant restaurant, CancellationToken cancellationToken = default)
     {
-        await _context.Restaurants
-            .Where(x => x.Id == restaurantId)
-            .ExecuteDeleteAsync(cancellationToken: cancellationToken);
+        _context.Restaurants.Remove(restaurant);
     }
 }

@@ -1,5 +1,6 @@
 using DDD.Kitchen.Domain.Aggregate;
 using DDD.Kitchen.Infrastructure;
+using DDD.Kitchen.Infrastructure.Interceptors;
 using DDD.Kitchen.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,12 +12,19 @@ public class InfrastructureServiceInstaller : IServiceInstaller
     {
         services.AddDbContextPool<KitchenDbContext>(options =>
         {
-            options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
+            var auditableInterceptor = services.BuildServiceProvider().GetService<UpdateAuditableEntitiesInterceptor>();
+            
+            options
+                .UseNpgsql(configuration.GetConnectionString("DefaultConnection"))
+                .AddInterceptors(auditableInterceptor!);
+                
         });
         
         services.AddScoped<IRestaurantRepository, RestaurantRepository>();
         
         services.AddScoped<KitchenDbContextInitializer>();
+        
+        services.AddSingleton<UpdateAuditableEntitiesInterceptor>();
 
     }
 }

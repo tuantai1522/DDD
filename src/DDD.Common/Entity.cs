@@ -31,7 +31,7 @@ public class Entity : IBaseEntity<Guid>
     /// <summary>
     /// Updated At is the time when item was updated with the latest time
     /// </summary>
-    public DateTime UpdatedAt { get; private set; } = DateTime.UtcNow;
+    public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
 
     /// <summary>
     /// Updated By is the name of whom which updated item
@@ -57,14 +57,6 @@ public class Entity : IBaseEntity<Guid>
     /// PersonName of person who updates this item
     /// </param>
     public void SetUpdatedBy(string updatedBy) => UpdatedBy = updatedBy;
-    
-    /// <summary>
-    /// Define when to update this item
-    /// </summary>
-    /// <param name="updatedAt">
-    /// Time when updates this item
-    /// </param>
-    public void SetUpdatedAt(DateTime updatedAt) => UpdatedAt = updatedAt;
     
     /// <summary>
     /// Define this item active or not

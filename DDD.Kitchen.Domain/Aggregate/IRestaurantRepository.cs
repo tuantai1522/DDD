@@ -14,6 +14,6 @@ public interface IRestaurantRepository : IRepository<Restaurant>
     Task<IReadOnlyList<Restaurant>> GetRestaurants(CancellationToken cancellationToken = default);
     
     Task AddRestaurant(Restaurant restaurant, CancellationToken cancellationToken = default);
-    
-    Task DeleteRestaurantById(Guid restaurantId, CancellationToken cancellationToken = default);
+
+    void DeleteRestaurant(Restaurant restaurant, CancellationToken cancellationToken = default);
 }
