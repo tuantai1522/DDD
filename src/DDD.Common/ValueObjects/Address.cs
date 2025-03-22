@@ -3,8 +3,21 @@ namespace DDD.Domain.ValueObjects;
 /// <summary>
 /// Value object of address
 /// </summary>
-/// <param name="Street"></param>
-/// <param name="ZipCode"></param>
-/// <param name="Country"></param>
+public record Address
+{
+    public string Street { get; init; }
+    public string? ZipCode { get; init; }
+    public string Country { get; init; }
 
-public record Address(string Street, string ZipCode, string Country);
+    private Address(string street, string zipCode, string country)
+    {
+        Street = street;
+        ZipCode = zipCode;
+        Country = country;
+    }
+
+    public static Result<Address> Create(string street, string zipCode, string country)
+    {
+        return new Address(street, zipCode, country);
+    }
+}

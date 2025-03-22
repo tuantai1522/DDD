@@ -16,7 +16,7 @@ internal sealed class CreateRestaurantCommandHandler(IRestaurantRepository resta
 
     public async Task<Result<Guid>> Handle(CreateRestaurantCommand request, CancellationToken cancellationToken)
     {
-        var restaurant = Restaurant.Create(request.Name);
+        var restaurant = Restaurant.Create(request.Name, request.Street, request.ZipCode, request.Country);
 
         await _restaurantRepository.AddRestaurant(restaurant.Value, cancellationToken);
         

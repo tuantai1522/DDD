@@ -28,7 +28,7 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
     
-    // await app.InitializeDatabaseAsync();
+    await app.InitializeDatabaseAsync();
     app.UseSwagger();
     app.UseSwaggerUI();
 }

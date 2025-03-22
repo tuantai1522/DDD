@@ -42,7 +42,7 @@ public class RestaurantsEndpoints : ICarterModule
     
     private static async Task<IResult> CreateRestaurant(CreateRestaurantRequest request, IMediator mediator)
     {
-        var result = await mediator.Send(new CreateRestaurantCommand(request.Name));
+        var result = await mediator.Send(new CreateRestaurantCommand(request.Name, request.Street, request.ZipCode, request.Country));
 
         return result.IsSuccess
             ? Results.Ok(result.Value)
@@ -51,7 +51,7 @@ public class RestaurantsEndpoints : ICarterModule
     
     private static async Task<IResult> UpdateRestaurant(Guid id, UpdateRestaurantRequest request, IMediator mediator)
     {
-        var result = await mediator.Send(new UpdateRestaurantCommand(id, request.Name));
+        var result = await mediator.Send(new UpdateRestaurantCommand(id, request.Name, request.Street, request.ZipCode, request.Country));
 
         return result.IsSuccess
             ? Results.Ok(result.Value)

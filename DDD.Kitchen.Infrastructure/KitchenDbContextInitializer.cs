@@ -38,7 +38,7 @@ public sealed class KitchenDbContextInitializer(KitchenDbContext context)
         var restaurants = restaurantFaker
             .CustomInstantiator(f =>
             {
-                var result = Restaurant.Create(f.Company.CompanyName());
+                var result = Restaurant.Create(f.Company.CompanyName(), f.Address.StreetName(), f.Address.ZipCode(), f.Address.Country());
                 var restaurant = result.Value;
                 
                 // Add 3-7 menu items per restaurant

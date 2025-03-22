@@ -23,7 +23,7 @@ internal sealed class UpdateRestaurantCommandHandler(IRestaurantRepository resta
             return Result.Failure<Guid>(RestaurantErrors.NotFound(request.Id));
         }
         
-        restaurant.Update(request.Name);
+        restaurant.Update(request.Name, request.Street, request.ZipCode, request.Country);
         
         _restaurantRepository.UpdateRestaurant(restaurant);
         
