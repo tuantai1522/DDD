@@ -38,10 +38,18 @@ public class Restaurant : Entity, IAggregateRoot
         return Result.Success(restaurant);
     }
     
+    public void Update(string name)
+    {
+        Name = name;
+    }
+    
     /// <summary>
     /// To add new menu item
     /// </summary>
     /// <param name="menuItem"></param>
     public void AddMenuItem(MenuItem menuItem) => _menuItems.Add(menuItem);
+
+    public DateTime CreatedAt { get; set; }
     
+    public DateTime UpdatedAt { get; set; }
 }

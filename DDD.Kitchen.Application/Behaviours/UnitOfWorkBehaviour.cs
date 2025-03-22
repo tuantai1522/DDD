@@ -1,5 +1,5 @@
+using System.Transactions;
 using DDD.Domain;
-using FluentValidation;
 using MediatR;
 
 namespace DDD.Kitchen.Application.Behaviours;
@@ -28,11 +28,17 @@ public sealed class UnitOfWorkBehaviour<TRequest, TResponse>(IUnitOfWork unitOfW
                return await next();
           }
 
-          var response = await next();
-          
-          await _unitOfWork.SaveChangesAsync(cancellationToken);
+          // To create global transaction
+          using (var transactionScope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
+          {
+               var response = await next();
 
-          return response;
+               await _unitOfWork.SaveChangesAsync(cancellationToken);
+               
+               transactionScope.Complete();
+
+               return response;
+          }
      }
 
      private static bool IsNotCommand()

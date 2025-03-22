@@ -1,4 +1,7 @@
 using Carter;
+using DDD.Kitchen.Application.Restaurants.Commands.CreateRestaurant;
+using DDD.Kitchen.Application.Restaurants.Commands.DeleteRestaurant;
+using DDD.Kitchen.Application.Restaurants.Commands.UpdateRestaurant;
 using DDD.Kitchen.Application.Restaurants.Queries.GetRestaurantById;
 using DDD.Kitchen.Application.Restaurants.Queries.GetRestaurants;
 using DDD.Kitchen.WebApi.Extensions;
@@ -14,6 +17,9 @@ public class RestaurantsEndpoints : ICarterModule
         
         group.MapGet("", GetRestaurants).WithName(nameof(GetRestaurants));
         group.MapGet("{id}", GetRestaurantById).WithName(nameof(GetRestaurantById));
+        group.MapPost("", CreateRestaurant).WithName(nameof(CreateRestaurant));
+        group.MapPut("{id}", UpdateRestaurant).WithName(nameof(UpdateRestaurant));
+        group.MapDelete("{id}", DeleteRestaurant).WithName(nameof(DeleteRestaurant));
     }
 
     private static async Task<IResult> GetRestaurants(IMediator mediator)
@@ -28,6 +34,33 @@ public class RestaurantsEndpoints : ICarterModule
     private static async Task<IResult> GetRestaurantById(Guid id, IMediator mediator)
     {
         var result = await mediator.Send(new GetRestaurantByIdQuery(id));
+
+        return result.IsSuccess
+            ? Results.Ok(result.Value)
+            : result.ToProblemDetails();
+    }
+    
+    private static async Task<IResult> CreateRestaurant(CreateRestaurantRequest request, IMediator mediator)
+    {
+        var result = await mediator.Send(new CreateRestaurantCommand(request.Name));
+
+        return result.IsSuccess
+            ? Results.Ok(result.Value)
+            : result.ToProblemDetails();
+    }
+    
+    private static async Task<IResult> UpdateRestaurant(Guid id, UpdateRestaurantRequest request, IMediator mediator)
+    {
+        var result = await mediator.Send(new UpdateRestaurantCommand(id, request.Name));
+
+        return result.IsSuccess
+            ? Results.Ok(result.Value)
+            : result.ToProblemDetails();
+    }
+    
+    private static async Task<IResult> DeleteRestaurant(Guid id, IMediator mediator)
+    {
+        var result = await mediator.Send(new DeleteRestaurantCommand(id));
 
         return result.IsSuccess
             ? Results.Ok(result.Value)

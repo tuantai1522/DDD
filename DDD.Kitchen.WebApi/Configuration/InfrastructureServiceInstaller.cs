@@ -1,3 +1,4 @@
+using DDD.Domain;
 using DDD.Kitchen.Domain.Aggregate;
 using DDD.Kitchen.Infrastructure;
 using DDD.Kitchen.Infrastructure.Interceptors;
@@ -10,6 +11,8 @@ public class InfrastructureServiceInstaller : IServiceInstaller
 {
     public void InstallServices(IServiceCollection services, IConfiguration configuration)
     {
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
+        
         services.AddDbContextPool<KitchenDbContext>(options =>
         {
             var auditableInterceptor = services.BuildServiceProvider().GetService<UpdateAuditableEntitiesInterceptor>();

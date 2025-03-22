@@ -20,7 +20,7 @@ public class Entity : IBaseEntity<Guid>
     /// <summary>
     /// Created At is the time when item created
     /// </summary>
-    public DateTime CreatedAt { get; init; } = DateTime.UtcNow;
+    public DateTime CreatedAt { get; set; }
 
     /// <summary>
     /// Created By is the name of whom which created item
@@ -31,7 +31,7 @@ public class Entity : IBaseEntity<Guid>
     /// <summary>
     /// Updated At is the time when item was updated with the latest time
     /// </summary>
-    public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
+    public DateTime UpdatedAt { get; set; }
 
     /// <summary>
     /// Updated By is the name of whom which updated item
