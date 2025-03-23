@@ -10,7 +10,7 @@ namespace DDD.Kitchen.Application.Restaurants.Commands.CreateRestaurant;
 /// <param name="restaurantRepository">
 /// To work with Restaurant Entity in repository
 /// </param>
-internal sealed class CreateRestaurantCommandHandler(IRestaurantRepository restaurantRepository) : IRequestHandler<CreateRestaurantCommand, Result<Guid>>
+public sealed class CreateRestaurantCommandHandler(IRestaurantRepository restaurantRepository) : IRequestHandler<CreateRestaurantCommand, Result<Guid>>
 {
     private readonly IRestaurantRepository _restaurantRepository = restaurantRepository;
 

@@ -28,10 +28,10 @@ public sealed class KitchenDbContextInitializer(KitchenDbContext context)
 
         // Configure faker for MenuItem
         var menuItemFaker = new Faker<MenuItem>()
-            .CustomInstantiator(f => new MenuItem(
+            .CustomInstantiator(f => MenuItem.Create(
                 name: f.Commerce.ProductName(),
                 price: decimal.Parse(f.Commerce.Price(min: 1, max: 100)),
-                restaurantId: Guid.Empty)); // Will be set when adding to restaurant
+                restaurantId: Guid.Empty).Value); // Will be set when adding to restaurant
 
         // Configure faker for Restaurant
         var restaurantFaker = new Faker<Restaurant>();

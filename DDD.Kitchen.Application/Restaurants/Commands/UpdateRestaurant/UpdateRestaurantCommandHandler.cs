@@ -10,7 +10,7 @@ namespace DDD.Kitchen.Application.Restaurants.Commands.UpdateRestaurant;
 /// <param name="restaurantRepository">
 /// To work with Restaurant Entity in repository
 /// </param>
-internal sealed class UpdateRestaurantCommandHandler(IRestaurantRepository restaurantRepository) : IRequestHandler<UpdateRestaurantCommand, Result<Guid>>
+public sealed class UpdateRestaurantCommandHandler(IRestaurantRepository restaurantRepository) : IRequestHandler<UpdateRestaurantCommand, Result<Guid>>
 {
     private readonly IRestaurantRepository _restaurantRepository = restaurantRepository;
 

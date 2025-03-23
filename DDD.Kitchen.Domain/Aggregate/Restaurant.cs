@@ -15,7 +15,7 @@ public class Restaurant : Entity, IAggregateRoot
     /// </summary>
     private readonly List<MenuItem> _menuItems = [];
 
-    public IReadOnlyCollection<MenuItem> MenuItems => _menuItems.ToList();
+    public IReadOnlyList<MenuItem> MenuItems => _menuItems.ToList();
     
     public Address Address { get; private set; } = null!;
 
