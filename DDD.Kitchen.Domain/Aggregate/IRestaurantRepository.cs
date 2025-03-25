@@ -4,7 +4,7 @@ namespace DDD.Kitchen.Domain.Aggregate;
 
 public interface IRestaurantRepository : IRepository<Restaurant>
 {
-    Task<Restaurant?> GetRestaurantById(Guid restaurantId, CancellationToken cancellationToken = default);
+    Task<Restaurant?> GetRestaurantById(RestaurantId id, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// To get all active restaurants in system

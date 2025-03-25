@@ -19,7 +19,7 @@ public class UpdateAuditableEntitiesInterceptor : SaveChangesInterceptor
         }
 
         var entries = dbContext.ChangeTracker
-            .Entries<Entity>();
+            .Entries<IAuditableEntity>();
 
         // To update UpdatedAt property of all entities
         foreach (var entry in entries)

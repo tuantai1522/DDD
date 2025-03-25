@@ -20,6 +20,6 @@ public sealed class CreateRestaurantCommandHandler(IRestaurantRepository restaur
 
         await _restaurantRepository.AddRestaurant(restaurant.Value, cancellationToken);
         
-        return Result.Success(restaurant.Value.Id);
+        return Result.Success(restaurant.Value.Id.Value);
     }
 }

@@ -21,12 +21,12 @@ public sealed class AddMenuItemCommandHandler(IRestaurantRepository restaurantRe
 
         if (restaurant is null)
         {
-            return Result.Failure<Guid>(RestaurantErrors.NotFound(request.RestaurantId));
+            return Result.Failure<Guid>(RestaurantErrors.NotFound(request.RestaurantId.Value));
         }
 
         // Add Menu Item to that restaurant
         restaurant.AddMenuItem(MenuItem.Create(request.Name, request.Price, request.RestaurantId).Value);
         
-        return Result.Success(restaurant.Id);
+        return Result.Success(restaurant.Id.Value);
     }
 }

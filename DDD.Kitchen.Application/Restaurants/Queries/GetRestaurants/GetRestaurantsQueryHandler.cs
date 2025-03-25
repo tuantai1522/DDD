@@ -11,7 +11,7 @@ namespace DDD.Kitchen.Application.Restaurants.Queries.GetRestaurants;
 /// <param name="restaurantRepository">
 /// To work with Restaurant Entity in repository
 /// </param>
-internal sealed class GetRestaurantsQueryHandler(IRestaurantRepository restaurantRepository) 
+public sealed class GetRestaurantsQueryHandler(IRestaurantRepository restaurantRepository) 
     : IRequestHandler<GetRestaurantsQuery, Result<IReadOnlyList<RestaurantDto>>>
 {
     private readonly IRestaurantRepository _restaurantRepository = restaurantRepository;

@@ -5,6 +5,7 @@ using DDD.Kitchen.Application.Restaurants.Commands.DeleteRestaurant;
 using DDD.Kitchen.Application.Restaurants.Commands.UpdateRestaurant;
 using DDD.Kitchen.Application.Restaurants.Queries.GetRestaurantById;
 using DDD.Kitchen.Application.Restaurants.Queries.GetRestaurants;
+using DDD.Kitchen.Domain.Aggregate;
 using DDD.Kitchen.WebApi.Extensions;
 using MediatR;
 
@@ -19,7 +20,7 @@ public class RestaurantsEndpoints : ICarterModule
         group.MapGet("", GetRestaurants).WithName(nameof(GetRestaurants));
         group.MapGet("{id}", GetRestaurantById).WithName(nameof(GetRestaurantById));
         group.MapPost("", CreateRestaurant).WithName(nameof(CreateRestaurant));
-        group.MapPost("{id}", AddMenuItem).WithName(nameof(AddMenuItem));
+        group.MapPost("menu-items/{id}", AddMenuItem).WithName(nameof(AddMenuItem));
         group.MapPut("{id}", UpdateRestaurant).WithName(nameof(UpdateRestaurant));
         group.MapDelete("{id}", DeleteRestaurant).WithName(nameof(DeleteRestaurant));
     }
@@ -71,7 +72,7 @@ public class RestaurantsEndpoints : ICarterModule
     
     private static async Task<IResult> AddMenuItem(Guid id, AddMenuItemRequest request, IMediator mediator)
     {
-        var result = await mediator.Send(new AddMenuItemCommand(request.Name, request.Price, id));
+        var result = await mediator.Send(new AddMenuItemCommand(request.Name, request.Price, new RestaurantId(id)));
 
         return result.IsSuccess
             ? Results.Ok(result.Value)

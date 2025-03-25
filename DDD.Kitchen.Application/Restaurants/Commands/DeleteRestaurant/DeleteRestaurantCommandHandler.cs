@@ -16,7 +16,7 @@ public sealed class DeleteRestaurantCommandHandler(IRestaurantRepository restaur
 
     public async Task<Result<Guid>> Handle(DeleteRestaurantCommand request, CancellationToken cancellationToken)
     {
-        var restaurant = await _restaurantRepository.GetRestaurantById(request.Id, cancellationToken);
+        var restaurant = await _restaurantRepository.GetRestaurantById(new RestaurantId(request.Id), cancellationToken);
 
         if (restaurant is null)
         {
@@ -25,6 +25,6 @@ public sealed class DeleteRestaurantCommandHandler(IRestaurantRepository restaur
         
         _restaurantRepository.DeleteRestaurant(restaurant);
         
-        return Result.Success(restaurant.Id);
+        return Result.Success(restaurant.Id.Value);
     }
 }

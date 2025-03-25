@@ -11,7 +11,7 @@ namespace DDD.Kitchen.Application.Restaurants.Queries.GetRestaurantById;
 /// <param name="restaurantRepository">
 /// To work with Restaurant Entity in repository
 /// </param>
-internal sealed class GetRestaurantByIdQueryHandler(IRestaurantRepository restaurantRepository) 
+public sealed class GetRestaurantByIdQueryHandler(IRestaurantRepository restaurantRepository) 
     : IRequestHandler<GetRestaurantByIdQuery, Result<RestaurantDto>>
 {
     private readonly IRestaurantRepository _restaurantRepository = restaurantRepository;
@@ -19,7 +19,7 @@ internal sealed class GetRestaurantByIdQueryHandler(IRestaurantRepository restau
     public async Task<Result<RestaurantDto>> Handle(GetRestaurantByIdQuery request,
         CancellationToken cancellationToken)
     {
-        var restaurant = await _restaurantRepository.GetRestaurantById(request.Id, cancellationToken);
+        var restaurant = await _restaurantRepository.GetRestaurantById(new RestaurantId(request.Id), cancellationToken);
 
         return restaurant is null
             ? Result.Failure<RestaurantDto>(RestaurantErrors.NotFound(request.Id))

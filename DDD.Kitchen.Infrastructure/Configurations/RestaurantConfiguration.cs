@@ -9,6 +9,10 @@ public class RestaurantConfiguration : IEntityTypeConfiguration<Restaurant>
     public void Configure(EntityTypeBuilder<Restaurant> builder)
     {
         builder.ToTable("Restaurants", "kitchens");
+        
+        builder.Property(o => o.Id).HasConversion(
+            menuItem => menuItem.Value,
+            value => new RestaurantId(value));
 
         builder.Property(p => p.Name).HasMaxLength(100).IsRequired();
 
