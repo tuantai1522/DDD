@@ -23,7 +23,7 @@ public sealed class GetRestaurantsQueryHandler(IRestaurantRepository restaurantR
 
         // To map from Restaurant to RestaurantDto
         IReadOnlyList<RestaurantDto> response = restaurants
-            .Select(restaurant => new RestaurantDto(restaurant.Name, restaurant.MenuItems
+            .Select(restaurant => new RestaurantDto(restaurant.Name, restaurant.Address, restaurant.MenuItems
                 .Select(item => new MenuItemDto(item.Name, item.Price))
                 .ToList()))
             .ToList();

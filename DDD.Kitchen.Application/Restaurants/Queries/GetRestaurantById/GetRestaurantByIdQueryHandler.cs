@@ -23,6 +23,6 @@ public sealed class GetRestaurantByIdQueryHandler(IRestaurantRepository restaura
 
         return restaurant is null
             ? Result.Failure<RestaurantDto>(RestaurantErrors.NotFound(request.Id))
-            : Result.Success(new RestaurantDto(restaurant.Name, restaurant.MenuItems.Select(item => new MenuItemDto(item.Name, item.Price)).ToList()));
+            : Result.Success(new RestaurantDto(restaurant.Name, restaurant.Address, restaurant.MenuItems.Select(item => new MenuItemDto(item.Name, item.Price)).ToList()));
     }
 }

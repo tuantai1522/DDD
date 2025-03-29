@@ -1,0 +1,20 @@
+services:
+  redis:
+    image: redis:latest
+    container_name: ddd.redis
+    hostname: ddd.redis
+    networks:
+      - ddd_network
+    restart: always
+    ports:
+      - "6379:6379"
+    command: ["redis-server", "--appendonly", "yes"]
+
+networks:
+  ddd_network:
+
+volumes:
+  # sqlserver_data:
+  # sqlserver_logs:
+  caddy_data:
+  caddy_config:

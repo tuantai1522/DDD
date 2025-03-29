@@ -13,11 +13,15 @@ public class Restaurant : Entity, IAggregateRoot, IAuditableEntity
     public string Name { get; private set; } = null!;
 
     /// <summary>
-    /// List menu in this restaurant
+    /// List of menu items in this restaurant
     /// </summary>
-    private readonly List<MenuItem> _menuItems = [];
+    private List<MenuItem> _menuItems = [];
 
-    public IReadOnlyList<MenuItem> MenuItems => _menuItems.ToList();
+    public IReadOnlyList<MenuItem> MenuItems
+    {
+        get => _menuItems.AsReadOnly(); 
+        private set => _menuItems = value.ToList();
+    }
 
     public Address Address { get; private set; } = null!;
 

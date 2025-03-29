@@ -9,6 +9,11 @@ public record Address
     public string? ZipCode { get; init; }
     public string Country { get; init; }
 
+    private Address()
+    {
+        
+    }
+
     private Address(string street, string zipCode, string country)
     {
         Street = street;
