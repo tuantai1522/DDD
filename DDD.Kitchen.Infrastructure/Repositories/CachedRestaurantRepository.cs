@@ -9,10 +9,10 @@ public sealed class CachedRestaurantRepository(HybridCache cache, IRestaurantRep
     private readonly IRestaurantRepository _restaurantRepository = restaurantRepository;
     private readonly HybridCache _cache = cache;
 
+    private const string Key = "restaurants";
+    
     public async Task<Restaurant?> GetRestaurantById(RestaurantId id, CancellationToken cancellationToken = default)
     {
-        var key = $"restaurant-{id.Value}";
-                        
         var settings = new JsonSerializerSettings
         {
             ContractResolver = new PrivateResolver(),
@@ -20,14 +20,15 @@ public sealed class CachedRestaurantRepository(HybridCache cache, IRestaurantRep
             ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor,
         };
         
-        var cachedRestaurant = await _cache.GetOrCreateAsync(key, async token =>
+        var restaurantKey = $"{Key}_{id.Value}";
+        var cachedRestaurant = await _cache.GetOrCreateAsync(restaurantKey, async token =>
             {
                 var restaurant = await _restaurantRepository.GetRestaurantById(id, token);
 
                 return JsonConvert.SerializeObject(restaurant, settings);
                 
             },
-            tags: ["restaurants"],
+            tags: [Key],
             cancellationToken: cancellationToken);
 
         return JsonConvert.DeserializeObject<Restaurant>(cachedRestaurant, settings);
@@ -35,15 +36,13 @@ public sealed class CachedRestaurantRepository(HybridCache cache, IRestaurantRep
 
     public async Task<IReadOnlyList<Restaurant>> GetRestaurants(CancellationToken cancellationToken = default)
     {
-        const string key = $"restaurants";
-
-        var cachedRestaurants = await _cache.GetOrCreateAsync(key, async token =>
+        var cachedRestaurants = await _cache.GetOrCreateAsync(Key, async token =>
             {
                 var restaurant = await _restaurantRepository.GetRestaurants(token);
 
                 return restaurant;
             },
-            tags: ["restaurants"],
+            tags: [Key],
             cancellationToken: cancellationToken);
 
         return cachedRestaurants;
@@ -57,10 +56,21 @@ public sealed class CachedRestaurantRepository(HybridCache cache, IRestaurantRep
     public void UpdateRestaurant(Restaurant restaurant)
     {
         _restaurantRepository.UpdateRestaurant(restaurant);
+        
+        var restaurantKey = $"{Key}_{restaurant.Id.Value}";
+        _ = RemoveCache(restaurantKey);
     }
 
     public void DeleteRestaurant(Restaurant restaurant)
     {
         _restaurantRepository.DeleteRestaurant(restaurant);
+        
+        var restaurantKey = $"{Key}_{restaurant.Id.Value}";
+        _ = RemoveCache(restaurantKey);
+    }
+    
+    private async Task RemoveCache(string key)
+    {
+        await _cache.RemoveAsync(key);
     }
 }
