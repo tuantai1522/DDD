@@ -23,6 +23,15 @@ public sealed class RestaurantRepository(KitchenDbContext context) : IRestaurant
             .ToListAsync(cancellationToken);
     }
 
+    public async Task<IReadOnlyList<Restaurant>> GetRestaurants(string name, int limit, CancellationToken cancellationToken)
+    {
+        return await _context.Restaurants
+            .Where(x => string.Compare(x.Name, name) >= 0 && x.Active)
+            .OrderBy(x => x.Name)
+            .Take(limit + 1)
+            .ToListAsync(cancellationToken);
+    }
+
     public async Task AddRestaurant(Restaurant restaurant, CancellationToken cancellationToken = default)
     {
         await _context.Restaurants.AddAsync(restaurant, cancellationToken);

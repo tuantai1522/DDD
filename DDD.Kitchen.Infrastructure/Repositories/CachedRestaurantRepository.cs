@@ -36,16 +36,12 @@ public sealed class CachedRestaurantRepository(HybridCache cache, IRestaurantRep
 
     public async Task<IReadOnlyList<Restaurant>> GetRestaurants(CancellationToken cancellationToken = default)
     {
-        var cachedRestaurants = await _cache.GetOrCreateAsync(Key, async token =>
-            {
-                var restaurant = await _restaurantRepository.GetRestaurants(token);
+        return await _restaurantRepository.GetRestaurants(cancellationToken);
+    }
 
-                return restaurant;
-            },
-            tags: [Key],
-            cancellationToken: cancellationToken);
-
-        return cachedRestaurants;
+    public async Task<IReadOnlyList<Restaurant>> GetRestaurants(string name, int limit, CancellationToken cancellationToken)
+    {
+        return await _restaurantRepository.GetRestaurants(name, limit, cancellationToken);
     }
 
     public async Task AddRestaurant(Restaurant restaurant, CancellationToken cancellationToken = default)

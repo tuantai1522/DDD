@@ -4,7 +4,9 @@ using MediatR;
 
 namespace DDD.Kitchen.Application.Restaurants.Queries.GetRestaurants;
 
-public sealed record GetRestaurantsQuery : IRequest<Result<IReadOnlyList<RestaurantDto>>>
+public sealed record GetRestaurantsQuery : IRequest<Result<GetRestaurantsResponse>>
 {
+    public int Limit { get; init; } = 10;
     
+    public string? Cursor { get; init; }
 }

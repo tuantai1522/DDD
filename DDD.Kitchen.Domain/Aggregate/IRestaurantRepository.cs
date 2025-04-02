@@ -12,6 +12,14 @@ public interface IRestaurantRepository : IRepository<Restaurant>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<IReadOnlyList<Restaurant>> GetRestaurants(CancellationToken cancellationToken = default);
+
+
+    /// <summary>
+    /// Get restaurants for pagination by id and name
+    /// </summary>
+    /// <returns></returns>
+    Task<IReadOnlyList<Restaurant>> GetRestaurants(string name, int limit, CancellationToken cancellationToken);
+    
     
     Task AddRestaurant(Restaurant restaurant, CancellationToken cancellationToken = default);
     

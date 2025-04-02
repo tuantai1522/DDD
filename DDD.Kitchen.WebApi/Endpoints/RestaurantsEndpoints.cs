@@ -25,9 +25,9 @@ public class RestaurantsEndpoints : ICarterModule
         group.MapDelete("{id}", DeleteRestaurant).WithName(nameof(DeleteRestaurant));
     }
 
-    private static async Task<IResult> GetRestaurants(IMediator mediator)
+    private static async Task<IResult> GetRestaurants([AsParameters] GetRestaurantsQuery query, IMediator mediator)
     {
-        var result = await mediator.Send(new GetRestaurantsQuery());
+        var result = await mediator.Send(query);
 
         return result.IsSuccess
             ? Results.Ok(result.Value)
