@@ -1,6 +1,6 @@
 using DDD.Domain;
 
-namespace DDD.Kitchen.Domain.Aggregate;
+namespace DDD.Kitchen.Domain.Aggregate.Restaurant;
 
 public interface IRestaurantRepository : IRepository<Restaurant>
 {

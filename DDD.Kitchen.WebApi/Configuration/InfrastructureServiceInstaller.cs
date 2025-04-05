@@ -1,5 +1,6 @@
 using DDD.Domain;
 using DDD.Kitchen.Domain.Aggregate;
+using DDD.Kitchen.Domain.Aggregate.Restaurant;
 using DDD.Kitchen.Infrastructure;
 using DDD.Kitchen.Infrastructure.Interceptors;
 using DDD.Kitchen.Infrastructure.Repositories;

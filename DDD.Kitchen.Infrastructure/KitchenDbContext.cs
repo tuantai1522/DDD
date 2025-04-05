@@ -1,4 +1,5 @@
-using DDD.Kitchen.Domain.Aggregate;
+using DDD.Kitchen.Domain.Aggregate.Restaurant;
+using DDD.Kitchen.Domain.Aggregate.Ticket;
 using Microsoft.EntityFrameworkCore;
 
 namespace DDD.Kitchen.Infrastructure;
@@ -12,4 +13,5 @@ public class KitchenDbContext(DbContextOptions<KitchenDbContext> options) : DbCo
     }
     
     public DbSet<Restaurant> Restaurants { get; set; }
+    public DbSet<Ticket> Tickets { get; set; }
 }

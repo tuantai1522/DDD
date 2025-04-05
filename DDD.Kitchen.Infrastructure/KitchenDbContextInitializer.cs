@@ -1,5 +1,6 @@
 using Bogus;
 using DDD.Kitchen.Domain.Aggregate;
+using DDD.Kitchen.Domain.Aggregate.Restaurant;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 

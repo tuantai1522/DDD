@@ -1,9 +1,9 @@
 using DDD.Domain;
 using DDD.Domain.ValueObjects;
 
-namespace DDD.Kitchen.Domain.Aggregate;
+namespace DDD.Kitchen.Domain.Aggregate.Restaurant;
 
-public class Restaurant : Entity, IAggregateRoot, IAuditableEntity
+public sealed class Restaurant : Entity, IAggregateRoot, IAuditableEntity
 {
     public RestaurantId Id { get; private init; }
 

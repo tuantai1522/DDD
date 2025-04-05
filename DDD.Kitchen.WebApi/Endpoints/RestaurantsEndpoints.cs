@@ -6,6 +6,7 @@ using DDD.Kitchen.Application.Restaurants.Commands.UpdateRestaurant;
 using DDD.Kitchen.Application.Restaurants.Queries.GetRestaurantById;
 using DDD.Kitchen.Application.Restaurants.Queries.GetRestaurants;
 using DDD.Kitchen.Domain.Aggregate;
+using DDD.Kitchen.Domain.Aggregate.Restaurant;
 using DDD.Kitchen.WebApi.Extensions;
 using MediatR;
 

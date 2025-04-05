@@ -1,6 +1,7 @@
 using DDD.Domain;
 using DDD.Kitchen.Application.Restaurants.Dtos;
 using DDD.Kitchen.Domain.Aggregate;
+using DDD.Kitchen.Domain.Aggregate.Restaurant;
 using MediatR;
 
 namespace DDD.Kitchen.Application.Restaurants.Queries.GetRestaurantById;

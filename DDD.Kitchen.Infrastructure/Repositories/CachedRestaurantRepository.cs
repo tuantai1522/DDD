@@ -1,4 +1,5 @@
 using DDD.Kitchen.Domain.Aggregate;
+using DDD.Kitchen.Domain.Aggregate.Restaurant;
 using Microsoft.Extensions.Caching.Hybrid;
 using Newtonsoft.Json;
 
