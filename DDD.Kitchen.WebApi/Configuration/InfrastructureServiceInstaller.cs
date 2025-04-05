@@ -1,6 +1,7 @@
 using DDD.Domain;
 using DDD.Kitchen.Domain.Aggregate;
 using DDD.Kitchen.Domain.Aggregate.Restaurant;
+using DDD.Kitchen.Domain.Aggregate.Ticket;
 using DDD.Kitchen.Infrastructure;
 using DDD.Kitchen.Infrastructure.Interceptors;
 using DDD.Kitchen.Infrastructure.Repositories;
@@ -44,6 +45,8 @@ public class InfrastructureServiceInstaller : IServiceInstaller
         
         services.AddScoped<IRestaurantRepository, RestaurantRepository>();
         services.Decorate<IRestaurantRepository, CachedRestaurantRepository>();
+        
+        services.AddScoped<ITicketRepository, TicketRepository>();
         
         services.AddScoped<KitchenDbContextInitializer>();
         
